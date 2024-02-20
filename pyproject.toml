@@ -21,7 +21,7 @@ pre-commit = "^3"
 mypy = "^1"
 
 [tool.poetry.group.testing.dependencies]
-pytest = "^7"
+pytest = "^8"
 pytest-clarity = "^1"
 pytest-cov = "^4"
 pytest-pretty = "^1"
