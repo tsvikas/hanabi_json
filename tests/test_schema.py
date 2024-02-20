@@ -42,3 +42,5 @@ def test_schema():
     ]
     assert game.id == 12345
     assert game.seed == "p2v0s0"
+    assert game.number_of_players == 5
+    assert game.cards_per_player == 4
