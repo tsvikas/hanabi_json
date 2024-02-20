@@ -9,6 +9,7 @@ repository = "https://github.com/tsvikas/hanabi_json"
 
 [tool.poetry.dependencies]
 python = "~3.12"
+pydantic = "^2.6.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24"
