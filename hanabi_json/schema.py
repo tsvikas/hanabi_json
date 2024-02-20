@@ -6,7 +6,9 @@ https://raw.githubusercontent.com/Hanabi-Live/hanabi-live/main/misc/example_game
 """
 
 import enum
-from typing import Annotated, Literal
+import json
+from pathlib import Path
+from typing import Annotated, Any, Literal, Self
 
 from pydantic import BaseModel, Discriminator, Field
 
@@ -219,3 +221,15 @@ class HanabiGame(BaseModel):
     characters: list[Character] | None = None
     id: int | None = None  # database ID
     seed: str | None = None
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> Self:
+        """Create a game from a dictionary."""
+        return cls.model_validate(data)
+
+    @classmethod
+    def from_json(cls, file: Path) -> Self:
+        """Read a game from a JSON file."""
+        with file.open() as f:
+            data = json.load(f)
+        return cls.from_dict(data)

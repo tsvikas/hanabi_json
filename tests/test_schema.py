@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 from hanabi_json import schema
@@ -9,9 +8,8 @@ def test_import():
 
 
 def test_schema():
-    with Path(__file__).parent.joinpath("sample.json").open() as f:
-        data = json.load(f)
-        game = schema.HanabiGame.model_validate(data)
+    filename = Path(__file__).parent.joinpath("sample.json")
+    game = schema.HanabiGame.from_json(filename)
     assert game.players == ["Alice", "Bob", "Cathy", "Donald", "Emily"]
     assert len(game.deck) == 50
     assert game.deck[0].suit_index == 3
