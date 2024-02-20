@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from hanabi_json import schema
+from hanabi_json import game, schema
 
 
 def test_import():
@@ -9,7 +9,7 @@ def test_import():
 
 def test_schema():
     filename = Path(__file__).parent.joinpath("sample.json")
-    game = schema.HanabiGame.from_json(filename)
+    game = schema.HanabiGameModel.from_json(filename)
     assert game.players == ["Alice", "Bob", "Cathy", "Donald", "Emily"]
     assert len(game.deck) == 50
     assert game.deck[0].suit_index == 3
@@ -42,5 +42,11 @@ def test_schema():
     ]
     assert game.id == 12345
     assert game.seed == "p2v0s0"
-    assert game.number_of_players == 5
-    assert game.cards_per_player == 4
+
+
+def test_game():
+    filename = Path(__file__).parent.joinpath("sample.json")
+    hanabi_game = game.HanabiGame.from_json(filename)
+
+    assert hanabi_game.number_of_players == 5
+    assert hanabi_game.cards_per_player == 4

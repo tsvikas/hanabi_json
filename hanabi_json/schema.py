@@ -186,7 +186,7 @@ class Character(BaseModel):
     metadata: int
 
 
-class HanabiGame(BaseModel):
+class HanabiGameModel(BaseModel):
     """
     Represents a game of Hanabi.
 
@@ -221,21 +221,6 @@ class HanabiGame(BaseModel):
     characters: list[Character] | None = None
     id: int | None = None  # database ID
     seed: str | None = None
-
-    @property
-    def number_of_players(self) -> int:
-        """The number of players in the game."""
-        return len(self.players)
-
-    @property
-    def cards_per_player(self) -> int:
-        """The number of cards each player starts with."""
-        variant_effect = 0
-        if self.options.one_less_card:
-            variant_effect -= 1
-        if self.options.one_extra_card:
-            variant_effect += 1
-        return variant_effect + {2: 5, 3: 5, 4: 4, 5: 4, 6: 3}[self.number_of_players]
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self:
