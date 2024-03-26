@@ -16,6 +16,7 @@ black = "^24"
 dunamai = "^1"
 ruff = "^0.2"
 pre-commit = "^3"
+poethepoet = "^0.25.0"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^1"
